@@ -7,6 +7,10 @@ import Register from "../page/Register/Register";
 import Login from "../page/Login/Login";
 import ErrorPage from "../page/ErrorPage/ErrorPage";
 import Home from "../page/Home/Home";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import AddFood from "../page/AddFood/AddFood";
+import AvailableFood from "../page/AvailableFood/AvailableFood";
+import ManageMyFood from "../page/ManageMyFood/ManageMyFood";
 
   const router = createBrowserRouter([
     {
@@ -28,6 +32,23 @@ import Home from "../page/Home/Home";
             path: '/login',
             element: <Login></Login>,
           },
+
+          {
+            path: '/addFood',
+            element: <PrivateRoute>
+                <AddFood></AddFood>
+            </PrivateRoute>,
+        },
+        {
+            path: '/availableFood',
+            element: <AvailableFood></AvailableFood>
+        },
+        {
+            path: '/manageMyFoods',
+            element: <PrivateRoute>
+                <ManageMyFood></ManageMyFood>
+            </PrivateRoute>
+        }
       ]
     },
   ]);

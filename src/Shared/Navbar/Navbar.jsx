@@ -35,13 +35,13 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="/allTourists">All Tourists Spot</NavLink>
+        <NavLink to="/availableFood"> Available Foods Page</NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="/addTourists">Add Tourists Spot</NavLink>
+        <NavLink to="/addFood">Add a Food</NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="/myList"> My List</NavLink>
+        <NavLink to="/manageMyFoods"> Manage My Foods</NavLink>
       </li>
       <li className="font-semibold">
         <NavLink to="/register">Register</NavLink>
@@ -78,12 +78,12 @@ const Navbar = () => {
         <a className="font-pop font-bold lg:text-2xl  sm:flex items-center justify-center bg-gradient-to-r from-cyan-400 to-violet-700  text-transparent bg-clip-text">
           <span>
             <img
-              src="https://i.ibb.co/nMYVFVg/travel.png"
+              src="https://i.ibb.co/zZWVvSy/help.png"
               alt=""
               className="w-10 h-10 hidden sm:block mr-2"
             />
           </span>
-         Tourists
+        Food
         </a>
       </div>
       <div className="navbar-center  hidden sm:block md:flex lg:flex">

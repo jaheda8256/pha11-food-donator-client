@@ -8,7 +8,7 @@ const Footer = () => {
   <aside>
     {/* <img src={logo} alt="" /> */}
     <p className="font-bold text-[#134d4d]">
-      Tourists.<br/>Providing reliable tech since 1992
+      Food.<br/>Providing reliable tech since 1992
     </p>
 
     <nav>
@@ -20,7 +20,7 @@ const Footer = () => {
     </div>
   </nav>
 
-    <p className="text-[#134d4d]">Tourist spot © 2024 - All right reserved</p>
+    <p className="text-[#134d4d]">Food © 2024 - All right reserved</p>
   </aside> 
  
 </footer>
