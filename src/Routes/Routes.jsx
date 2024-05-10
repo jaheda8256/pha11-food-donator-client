@@ -41,7 +41,8 @@ import ManageMyFood from "../page/ManageMyFood/ManageMyFood";
         },
         {
             path: '/availableFood',
-            element: <AvailableFood></AvailableFood>
+            element: <AvailableFood></AvailableFood>,
+            loader: () => fetch('http://localhost:5000/foods')
         },
         {
             path: '/manageMyFoods',

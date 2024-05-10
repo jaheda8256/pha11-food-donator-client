@@ -60,7 +60,7 @@ const AddFood = () => {
 
     return (
         <div>
-          <div className="bg-[#6aacac] text-[#195e5e] p-16 my-16 mx-2 rounded-md">
+          <div className="bg-[#0664738e] text-[#195e5e] p-16 my-16 mx-2 rounded-md">
     
         <h2 className="text-4xl font-lato text-center font-extrabold mb-6"> <span style={{ color: '', fontWeight: 'bold' }}>
           <Typewriter
