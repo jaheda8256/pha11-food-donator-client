@@ -15,8 +15,9 @@ const Root = () => {
     return (
         <div>
           
-            <Navbar></Navbar>
-           <div>
+           
+           <div className="font-lato max-w-6xl mx-auto">
+           <Navbar></Navbar>
            <Outlet></Outlet>
            </div>
 
