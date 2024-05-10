@@ -1,11 +1,68 @@
 import { Typewriter } from 'react-simple-typewriter';
+import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 const AddFood = () => {
+
+    const { user } = useAuth() || {};
+
+    const handleAddFood = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const photo = form.photo.value;
+        const status = form.status.value;
+        const name = form.name.value;
+        const email = user.email;
+        const  location = form.location.value;
+        const quantity = form.quantity.value;
+        const date = form.date.value;
+        const notes = form.notes.value;
+        const  photoURL = user?.photoURL;
+        const  displayName = user?.displayName;
+        
+    
+        const addFoods= {
+            status,
+            name,
+          location,
+          quantity,
+          date,
+          notes,
+          photoURL,
+          displayName,
+          email,
+          photo,
+        };
+        console.log(addFoods);
+    
+      //   // send data to the server
+        fetch('http://localhost:5000/foods', {
+            method: 'POST',
+            headers: {
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(addFoods)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Tourists added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+            }
+        })
+      }
+
+
     return (
         <div>
           <div className="bg-[#6aacac] text-[#195e5e] p-16 my-16 mx-2 rounded-md">
     
-        <h2 className="text-3xl font-pop text-center font-extrabold"> <span style={{ color: '', fontWeight: 'bold' }}>
+        <h2 className="text-4xl font-lato text-center font-extrabold mb-6"> <span style={{ color: '', fontWeight: 'bold' }}>
           <Typewriter
             words={['Add a Food']}
             loop={1000000}
@@ -18,10 +75,10 @@ const AddFood = () => {
           />
         </span></h2>
 
-        <form >
-            {/* photo url */}
-        <div className="mb-8">
-            <div className="form-control w-full">
+        <form onSubmit={handleAddFood}>
+            {/* photo url and status*/}
+          <div className="md:flex mb-8">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text"> Food Image</span>
               </label>
@@ -35,8 +92,21 @@ const AddFood = () => {
                 />
               </label>
             </div>
+            <div className="form-control md:w-1/2 ml-4">
+              <label className="label">
+                <span className="label-text"> Food Status</span>
+              </label>
+              <label className="input-group">
+                <input
+                required
+                  type="text"
+                  name="status"
+                  placeholder=" Food Status"
+                  className="input input-bordered w-full"
+                />
+              </label>
+            </div>
           </div>
-          {/* form name and subcategory name */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -120,46 +190,16 @@ const AddFood = () => {
               </label>
               <label className="input-group">
                 <input
-                required
+                 readOnly
                   type="text"
-                  name="userPhoto"
-                  placeholder="Photo URL"
+                  name="photoURL"
+                  placeholder="PhotoURL"
                   className="input input-bordered w-full"
                 />
               </label>
             </div>
           </div>
-          {/* form processing time and stock stactus */}
-          {/* <div className="md:flex mb-8">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text">Travel_time</span>
-              </label>
-              <label className="input-group">
-                <input
-                required
-                  type="text"
-                  name="travel"
-                  placeholder="travel_time"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text">TotalVisitorsPerYear</span>
-              </label>
-              <label className="input-group">
-                <input
-                required
-                  type="text"
-                  name="totalVisitorsPerYear"
-                  placeholder="totalVisitorsPerYear"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div> */}
+         
 {/* form name, email */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
@@ -168,10 +208,10 @@ const AddFood = () => {
               </label>
               <label className="input-group">
                 <input
-                required
+                readOnly
                   type="text"
-                  name="userName"
-                  placeholder="User Name"
+                  name="displayName"
+                  placeholder="displayName"
                   className="input input-bordered w-full"
                 />
               </label>
