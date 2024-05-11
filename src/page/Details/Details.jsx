@@ -246,8 +246,7 @@ const Details = () => {
           </div>
 
 
-          <input type="submit" value="Add Food" className="btn btn-block" />
-         
+          <button className="btn w-full mt-2"> Request</button>
         </form>
         <button className="btn w-full mt-2">Close</button>
                   </form>
