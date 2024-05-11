@@ -76,7 +76,7 @@ const ManageMyFood = () => {
                   {" "}
               <Link to={`/update/${food._id}`}>
               <button className="btn bg-purple-600 text-white border-none font-semibold">
-                      Update
+                     Update
                     </button>
                   </Link>
                 </td>
