@@ -16,7 +16,6 @@ const ManageMyFood = () => {
       .catch((err) => console.log(err.message));
   }, [user]);
 
-
   const handleDelete = (_id) => {
     console.log(_id);
 
@@ -53,8 +52,49 @@ const ManageMyFood = () => {
   };
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 grid`  -cols-1 gap-6 my-16">
-      {foodCards.map((food) => (
+    <div className="my-16">
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {foodCards.map((food, index) => (
+              <tr key={food._id}>
+                <th>{index + 1}</th>
+                <td>{food.name}</td>
+                <td>{food.quantity}</td>
+                <td>
+                  {" "}
+              <Link to={`/update/${food._id}`}>
+              <button className="btn bg-purple-600 text-white border-none font-semibold">
+                      Update
+                    </button>
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(food._id)}
+                    className="btn bg-red-600 border-none text-white font-semibold"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* {foodCards.map((food) => (
         <div
           key={food._id}
           className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-xl dark:bg-gray-50 dark:text-gray-800"
@@ -97,7 +137,7 @@ const ManageMyFood = () => {
           </Link>
           <button onClick={()=> handleDelete(food._id)} className="btn bg-red-600 border-none text-white font-semibold">Delete</button>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
