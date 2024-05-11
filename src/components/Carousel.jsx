@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import bgimg1 from '../assets/nudos.jpg'
 
 
 
@@ -16,7 +17,7 @@ import Slide from './Slide';
 
 export default function Carousel() {
   return (
-    <div className='mt-32 md:mt-0 '>
+    <div className='mt-44 md:my-16'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -33,7 +34,7 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-        <Slide></Slide>
+        <Slide image={bgimg1}></Slide>
         </SwiperSlide>
         <SwiperSlide>
         <Slide></Slide>
