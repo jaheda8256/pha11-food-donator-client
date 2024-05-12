@@ -1,12 +1,51 @@
+
+import { useState } from "react";
 import Carousel from "../../components/Carousel";
+import { useLoaderData } from "react-router-dom";
+import HomeCard from "./HomeCard";
+import { Typewriter } from "react-simple-typewriter";
+
 
 
 const Home = () => {
-    return (
-        <div>
-            <Carousel></Carousel>
+ 
+    const loadedFoods = useLoaderData();
+    const [foods, setFoods] = useState(loadedFoods);
+
+  return (
+    <div>
+      <Carousel></Carousel>
+
+      <div className="my-16">
+        <div className="text-center my-12">
+        <h2 className="text-4xl text-[#047f7f] font-lato text-center font-extrabold mb-6"> <span style={{ color: '', fontWeight: 'bold' }}>
+          <Typewriter
+            words={['Featured Foods']}
+            loop={1000000}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+            // onLoopDone={handleDone}
+          />
+        </span></h2>
+          <p className="text-[#788585]">
+            The food here is very good. You can take it <br /> if you want. If
+            extra food is sold here, it is given on request. Fresh food is
+            available here
+          </p>
         </div>
-    );
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
+          {foods?.map((food) => <HomeCard key={food._id}
+          food={food}
+          ></HomeCard> 
+            
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

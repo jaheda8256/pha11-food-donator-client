@@ -14,9 +14,6 @@ const Update = () => {
     quantity,
     date,
     notes,
-    photoURL,
-    displayName,
-    email,
     photo,
   } = food;
 
@@ -28,7 +25,7 @@ const Update = () => {
         const name = form.name.value;
         const email = user.email;
         const  location = form.location.value;
-        const quantity = form.quantity.value;
+        const quantity = parseInt(form.quantity.value);
         const date = form.date.value;
         const notes = form.notes.value;
         const  photoURL = user?.photoURL;
@@ -147,7 +144,7 @@ const Update = () => {
                 <input
                   required
                   defaultValue={quantity}
-                  type="text"
+                  type="number"
                   name="quantity"
                   placeholder="Food Quantity"
                   className="input input-bordered w-full"
