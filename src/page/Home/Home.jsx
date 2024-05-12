@@ -1,9 +1,12 @@
 
 import { useState } from "react";
 import Carousel from "../../components/Carousel";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import HomeCard from "./HomeCard";
 import { Typewriter } from "react-simple-typewriter";
+import ExtraSection from "./ExtraSection";
+import LastPart from "./LastPart";
+
 
 
 
@@ -43,7 +46,15 @@ const Home = () => {
             
           )}
         </div>
+        <div className="text-center my-6 px-8">
+      <Link to='/availableFood'>
+      <button className="btn bg-[#c0cece] font-extrabold text-[#195e5e]"> Show All Card</button>
+      </Link>
       </div>
+      </div>
+      <ExtraSection></ExtraSection>
+      <LastPart></LastPart>
+    
     </div>
   );
 };

@@ -32,7 +32,7 @@ const Register = () => {
 
     createUser(email, password, fullName, photoURL)
       .then((result) => {
-
+        console.log(result.user);
         if(result.user){
           toast.success("Registration successfully");
           navigate(from);

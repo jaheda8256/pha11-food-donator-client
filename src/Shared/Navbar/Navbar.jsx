@@ -1,5 +1,3 @@
-
-
 import { Link, NavLink } from "react-router-dom";
 
 import { renderToString } from "react-dom/server";
@@ -44,7 +42,7 @@ const Navbar = () => {
         <NavLink to="/manageMyFoods"> Manage My Foods</NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="/register">Register</NavLink>
+        <NavLink to="/myFoodRequest">My Food Request</NavLink>
       </li>
     </>
   );
@@ -83,7 +81,7 @@ const Navbar = () => {
               className="w-10 h-10 hidden sm:block mr-2"
             />
           </span>
-        Food
+          Food
         </a>
       </div>
       <div className="navbar-center  hidden sm:block md:flex lg:flex">
@@ -107,18 +105,17 @@ const Navbar = () => {
                 />
               </div>
               <button
-              className="btn text-white absolute mt-6 right-0 p-2 rounded-md shadow-md opacity-0 hover:opacity-100 transition-opacity hover:bg-blue-800 duration-300"
-              onClick={logout}
-            >
-              LogOut
-            </button>
+                className="btn text-white absolute mt-6 right-0 p-2 rounded-md shadow-md opacity-0 hover:opacity-100 transition-opacity hover:bg-blue-800 duration-300"
+                onClick={logout}
+              >
+                LogOut
+              </button>
             </label>
-          
           </div>
         ) : (
           <div className=" gap-4">
-            <Link to="/login">
-              <button className="btn bg-blue-800 text-white">Login</button>
+         <Link to="/login">
+          <button className="btn bg-blue-800 text-white">Login</button>
             </Link>
           </div>
         )}

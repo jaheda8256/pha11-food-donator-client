@@ -7,14 +7,14 @@ const ManageMyFood = () => {
   const loadedFoods = useLoaderData();
   const { user } = useAuth() || {};
   const [foodCards, setFoodCards] = useState(loadedFoods);
-
+console.log(foodCards);
   // get my spots
   useEffect(() => {
-    fetch(`http://localhost:5000/foods-email/${user.email}`)
+    fetch(`http://localhost:5000/foods-email/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setFoodCards(data))
       .catch((err) => console.log(err.message));
-  }, [user]);
+  }, [user?.email]);
 
   const handleDelete = (_id) => {
     console.log(_id);
