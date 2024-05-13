@@ -94,50 +94,7 @@ console.log(foodCards);
         </table>
       </div>
 
-      {/* {foodCards.map((food) => (
-        <div
-          key={food._id}
-          className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-xl dark:bg-gray-50 dark:text-gray-800"
-        >
-          <div className="flex space-x-4">
-            <img
-              alt=""
-              src={food.photoURL}
-              className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500"
-            />
-            <div className="flex flex-col space-y-1">
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="text-2xl font-semibold"
-              >
-                {food.displayName}
-              </a>
-            </div>
-          </div>
-          <div>
-            <img
-              src={food.photo}
-              alt=""
-              className="object-cover rounded-2xl w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
-            />
-            <h2 className="mb-1 text-2xl text-[#089797] font-extrabold">
-              {food.name}
-            </h2>
-            <p className="mb-1 font-semibold">{food.notes}</p>
-            <p>Location: {food.location}</p>
-            <p>Quantity: {food.quantity}</p>
-            <p>Date: {food.date}</p>
-          </div>
-
-          <Link to={`/update/${food._id}`}>
-            <button className="btn w-full bg-purple-600 text-white border-none font-semibold">
-              Update
-            </button>
-          </Link>
-          <button onClick={()=> handleDelete(food._id)} className="btn bg-red-600 border-none text-white font-semibold">Delete</button>
-        </div>
-      ))} */}
+      
     </div>
   );
 };

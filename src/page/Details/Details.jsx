@@ -1,70 +1,93 @@
-
-
 import { useLoaderData } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const Details = () => {
   const foods = useLoaderData();
-  console.log(foods)
+  console.log(foods);
 
   const { user } = useAuth() || {};
+  const [startDate, setStartDate] = useState(new Date() || new Date())
+  console.log(startDate)
+
+
+
+  const formatDate = (dateString) => {
+    if (!dateString) return ""; // Return empty string if dateString is undefined or null
+  
+    const dateObject = new Date(dateString);
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Adding 1 because getMonth() returns 0-indexed month
+    const day = String(dateObject.getDate()).padStart(2, "0");
+  
+    return `${year}-${month}-${day}`;
+  };
+
 
 
   const handleRequest = (event) => {
-      event.preventDefault();
-      const form = event.target;
-      const photo = form.photo.value;
-      const status = form.status.value;
-      const name = form.name.value;
-      const email = user.email;
-      const  location = form.location.value;
-      const quantity = parseInt(form.quantity.value);
-      const date = form.date.value;
-      const notes = form.notes.value;
-      const  photoURL = user?.photoURL;
-      const  displayName = user?.displayName;
+    event.preventDefault();
+    const form = event.target;
+    const photo = form.photo.value;
+    const status = form.status.value;
+    const name = form.name.value;
+    const email = user.email;
+    const deadline = startDate;
+    const location = form.location.value;
+    const quantity = parseInt(form.quantity.value);
+    const date = form.date.value;
+    const notes = form.notes.value;
+    const photoURL = user?.photoURL;
+    const displayName = user?.displayName;
 
-      const requestFoods= {
-  
-        photo,
-        status,
-        name,
-        location,
-        quantity,
-        date,
-        notes,
-        photoURL,
-        displayName,
-        email,
-        foodId: foods._id,
-        
-        };
-        console.log(requestFoods);
+    const requestFoods = {
+      photo,
+      status,
+      name,
+      deadline,
+      location,
+      quantity,
+      date,
+      notes,
+      photoURL,
+      displayName,
+      email,
+      foodId: foods._id,
+      // requesterEmail: user.email
     
-      //   // send data to the server
-      fetch(`http://localhost:5000/foods-request`, {
-        method: 'POST',
-        headers: {
-            'content-type':'application/json'
-        },
-        body: JSON.stringify(requestFoods)
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        if(data.insertedId){
-            Swal.fire({
-                title: 'Success!',
-                text: 'food added successfully',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-              })
-        }
-    })
-  }
+    };
+    console.log(requestFoods);
 
+    //   // send data to the server
+    fetch(`http://localhost:5000/foods-request`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(requestFoods),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "request added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+         
+        }
+
+        document.getElementById("my_modal_4").close();
+      });
+  };
 
   return (
     <div className="flex items-center justify-center my-16">
@@ -163,6 +186,7 @@ const Details = () => {
                             <input
                               readOnly
                               type="text"
+                              defaultValue={foods.photo}
                               name="photo"
                               placeholder="Food URL"
                               className="input input-bordered w-full"
@@ -178,6 +202,7 @@ const Details = () => {
                               readOnly
                               type="text"
                               name="status"
+                              defaultValue={foods.status}
                               placeholder=" Food Status"
                               className="input input-bordered w-full"
                             />
@@ -193,6 +218,7 @@ const Details = () => {
                             <input
                               readOnly
                               type="text"
+                              defaultValue={foods.name}
                               name="name"
                               placeholder="food name"
                               className="input input-bordered w-full"
@@ -207,6 +233,7 @@ const Details = () => {
                             <input
                               readOnly
                               type="text"
+                              defaultValue={foods.quantity}
                               name="quantity"
                               placeholder="Food Quantity"
                               className="input input-bordered w-full"
@@ -226,6 +253,7 @@ const Details = () => {
                               readOnly
                               type="text"
                               name="location"
+                              defaultValue={foods.location}
                               placeholder="location"
                               className="input input-bordered w-full"
                             />
@@ -242,9 +270,11 @@ const Details = () => {
                             <input
                               readOnly
                               type="date"
+                              defaultValue={formatDate(foods.date)}
                               name="date"
                               className="input input-bordered w-full"
                             />
+                            
                           </label>
                         </div>
                       </div>
@@ -258,6 +288,7 @@ const Details = () => {
                             <input
                               type="text"
                               name="notes"
+                              defaultValue=""
                               placeholder="Additional Notes"
                               className="input input-bordered w-full"
                             />
@@ -297,24 +328,20 @@ const Details = () => {
                         </div>
                         <div className="form-control md:w-1/2 ml-4">
                           <label className="label">
-                            <span className="label-text">User Email</span>
+                            <span className="label-text">Request Date</span>
                           </label>
-                          <label className="input-group">
-                            <input
-                              readOnly
-                              type="email"
-                              name="email"
-                              placeholder="User Email"
-                              className="input input-bordered w-full"
-                            />
-                          </label>
+                          <DatePicker className="border p-3 rounded-md" selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
                       </div>
 
-                      <input type="submit" value="Request" className="btn btn-block" />
-               
+                      <input
+                        type="submit"
+                        value="Request"
+                        className="btn btn-block"
+                      />
+
+                    
                     </form>
-                    <button className="btn w-full mt-2">Close</button>
                   </div>
                 </div>
               </div>

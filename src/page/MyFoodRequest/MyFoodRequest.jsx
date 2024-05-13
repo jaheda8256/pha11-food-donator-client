@@ -18,17 +18,33 @@ console.log(foodCards);
       .catch((err) => console.log(err.message));
   }, [user?.email]);
 
-  
+
   return (
     <div>
-      <h1>My Food Requests</h1>
-      <ul>
-        {foodCards.map((request) => (
-          <li key={request._id}>
-           p{request.name}
-          </li>
-        ))}
-      </ul>
+     <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Date</th>
+              <th>Request Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {foodCards.map((food, index) => (
+              <tr key={food._id}>
+                <th>{index + 1}</th>
+                <td>{food.displayName}</td>
+                <td>{food.location}</td>
+                <td>{food.date}</td>
+                <td>{food.deadline}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
     </div>
   );
 };
