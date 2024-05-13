@@ -31,7 +31,8 @@ const router = createBrowserRouter([
         path:'/myFoodRequest',
         element: <PrivateRoute>
             <MyFoodRequest></MyFoodRequest>
-        </PrivateRoute>
+        </PrivateRoute>,
+       loader: () => fetch("http://localhost:5000/foods"),
       },
 
       {

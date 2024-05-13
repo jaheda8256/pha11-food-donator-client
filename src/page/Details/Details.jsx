@@ -1,7 +1,70 @@
-import { Link, useLoaderData } from "react-router-dom";
+
+
+import { useLoaderData } from "react-router-dom";
+
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Details = () => {
   const foods = useLoaderData();
+  console.log(foods)
+
+  const { user } = useAuth() || {};
+
+
+  const handleRequest = (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const photo = form.photo.value;
+      const status = form.status.value;
+      const name = form.name.value;
+      const email = user.email;
+      const  location = form.location.value;
+      const quantity = parseInt(form.quantity.value);
+      const date = form.date.value;
+      const notes = form.notes.value;
+      const  photoURL = user?.photoURL;
+      const  displayName = user?.displayName;
+
+      const requestFoods= {
+  
+        photo,
+        status,
+        name,
+        location,
+        quantity,
+        date,
+        notes,
+        photoURL,
+        displayName,
+        email,
+        foodId: foods._id,
+        
+        };
+        console.log(requestFoods);
+    
+      //   // send data to the server
+      fetch(`http://localhost:5000/foods-request`, {
+        method: 'POST',
+        headers: {
+            'content-type':'application/json'
+        },
+        body: JSON.stringify(requestFoods)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        if(data.insertedId){
+            Swal.fire({
+                title: 'Success!',
+                text: 'food added successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
+        }
+    })
+  }
+
 
   return (
     <div className="flex items-center justify-center my-16">
@@ -86,170 +149,173 @@ const Details = () => {
                 {/* <h3 className="font-bold text-lg">Hello!</h3>
                 <p className="py-4">Click the button below to close</p> */}
                 <div className="modal-action">
-                  <form method="dialog">
+                  <div method="dialog">
                     {/* if there is a button, it will close the modal */}
 
-                    <form>
-            {/* photo url and status*/}
-          <div className="md:flex mb-8">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text"> Food Image</span>
-              </label>
-              <label className="input-group">
-                <input
-                 readOnly
-                  type="text"
-                  name="photo"
-                  placeholder="Food URL"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text"> Food Status</span>
-              </label>
-              <label className="input-group">
-                <input
-                readOnly
-                  type="text"
-                  name="status"
-                  placeholder=" Food Status"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
-          <div className="md:flex mb-8">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text"> Food Name</span>
-              </label>
-              <label className="input-group">
-                <input
-                 readOnly
-                  type="text"
-                  name="name"
-                  placeholder="food name"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text">Food Quantity</span>
-              </label>
-              <label className="input-group">
-                <input
-                readOnly
-                  type="text"
-                  name="quantity"
-                  placeholder="Food Quantity"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
+                    <form onSubmit={handleRequest}>
+                      {/* photo url and status*/}
+                      <div className="md:flex mb-8">
+                        <div className="form-control md:w-1/2">
+                          <label className="label">
+                            <span className="label-text"> Food Image</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="photo"
+                              placeholder="Food URL"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                        <div className="form-control md:w-1/2 ml-4">
+                          <label className="label">
+                            <span className="label-text"> Food Status</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="status"
+                              placeholder=" Food Status"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div className="md:flex mb-8">
+                        <div className="form-control md:w-1/2">
+                          <label className="label">
+                            <span className="label-text"> Food Name</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="name"
+                              placeholder="food name"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                        <div className="form-control md:w-1/2 ml-4">
+                          <label className="label">
+                            <span className="label-text">Food Quantity</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="quantity"
+                              placeholder="Food Quantity"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                      </div>
 
-          {/* form description and price row */}
-          <div className="md:flex mb-8">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text">Pickup Location</span>
-              </label>
-              <label className="input-group">
-                <input
-                readOnly
-                  type="text"
-                  name="location"
-                  placeholder="location"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text"> Expired Date/Time</span>
-              </label>
-              <label className="input-group">
-                <input
-                readOnly
-                  type="date"
-                  name="date"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
-          {/* form rating and customization row */}
-          <div className="md:flex mb-8">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text">Additional Notes</span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="text"
-                  name="notes"
-                  placeholder="Additional Notes"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text">Donator Image</span>
-              </label>
-              <label className="input-group">
-                <input
-                 readOnly
-                  type="text"
-                  name="photoURL"
-                  placeholder="PhotoURL"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
-         
-{/* form name, email */}
-          <div className="md:flex mb-8">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text">User Name</span>
-              </label>
-              <label className="input-group">
-                <input
-                readOnly
-                  type="text"
-                  name="displayName"
-                  placeholder="displayName"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text">User Email</span>
-              </label>
-              <label className="input-group">
-                <input
-                readOnly
-                  type="email"
-                  name="email"
-                  placeholder="User Email"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
+                      {/* form description and price row */}
+                      <div className="md:flex mb-8">
+                        <div className="form-control md:w-1/2">
+                          <label className="label">
+                            <span className="label-text">Pickup Location</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="location"
+                              placeholder="location"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                        <div className="form-control md:w-1/2 ml-4">
+                          <label className="label">
+                            <span className="label-text">
+                              {" "}
+                              Expired Date/Time
+                            </span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="date"
+                              name="date"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      {/* form rating and customization row */}
+                      <div className="md:flex mb-8">
+                        <div className="form-control md:w-1/2">
+                          <label className="label">
+                            <span className="label-text">Additional Notes</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              type="text"
+                              name="notes"
+                              placeholder="Additional Notes"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                        <div className="form-control md:w-1/2 ml-4">
+                          <label className="label">
+                            <span className="label-text">Donator Image</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="photoURL"
+                              placeholder="PhotoURL"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                      </div>
 
+                      {/* form name, email */}
+                      <div className="md:flex mb-8">
+                        <div className="form-control md:w-1/2">
+                          <label className="label">
+                            <span className="label-text">User Name</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="text"
+                              name="displayName"
+                              placeholder="displayName"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                        <div className="form-control md:w-1/2 ml-4">
+                          <label className="label">
+                            <span className="label-text">User Email</span>
+                          </label>
+                          <label className="input-group">
+                            <input
+                              readOnly
+                              type="email"
+                              name="email"
+                              placeholder="User Email"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
+                        </div>
+                      </div>
 
-          <button className="btn w-full mt-2"> Request</button>
-        </form>
-        <button className="btn w-full mt-2">Close</button>
-                  </form>
+                      <input type="submit" value="Request" className="btn btn-block" />
+               
+                    </form>
+                    <button className="btn w-full mt-2">Close</button>
+                  </div>
                 </div>
               </div>
             </dialog>
