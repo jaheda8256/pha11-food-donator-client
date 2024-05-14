@@ -60,7 +60,7 @@ const router = createBrowserRouter([
             <ManageMyFood></ManageMyFood>
           </PrivateRoute>
         ),
-        loader: () => fetch("https://food-server-rho.vercel.app/foods", {credentials: 'include'}),
+        loader: () => fetch("https://food-server-rho.vercel.app/foods"),
       },
       {
         path: "/details/:id",

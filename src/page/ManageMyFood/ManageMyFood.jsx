@@ -10,7 +10,7 @@ const ManageMyFood = () => {
 // console.log(foodCards);
   // get my spots
   useEffect(() => {
-    fetch(`https://food-server-rho.vercel.app/foods-email/${user?.email}`)
+    fetch(`https://food-server-rho.vercel.app/foods-email/${user?.email}`,{credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setFoodCards(data))
       .catch((err) => console.log(err.message));

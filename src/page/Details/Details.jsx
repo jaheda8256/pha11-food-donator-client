@@ -68,9 +68,9 @@ const Details = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
 
-        if (data.insertedId) {
+        if (data.message) {
           Swal.fire({
             title: "Success!",
             text: "request added successfully",
