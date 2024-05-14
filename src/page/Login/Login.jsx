@@ -8,7 +8,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+
 
 
 const Login = () => {
@@ -23,22 +23,11 @@ const Login = () => {
    const onSubmit = (data) => {
     const { email, password } = data;
     signInUser(email, password)
-      .then((result) => {
-        console.log(result);
-        toast.success("Login successful", result);
-        const user = { email };
-
-        axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
-        .then(res =>{
-            console.log(res.data)
-            if (res.data.success) {
-                 navigate(from);
-              }
-        })
-
-
-       
-      })
+    .then((result) => {
+      // console.log(result);
+      toast.success("Login successful", result);
+      navigate(from);
+    })
       .catch((error) => {
         toast.error(
           "Failed to login. Please check your email or password.",

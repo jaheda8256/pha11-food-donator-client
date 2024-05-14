@@ -34,10 +34,10 @@ const AddFood = () => {
         email,
         
         };
-        console.log(addFoods);
+        // console.log(addFoods);
     
       //   // send data to the server
-        fetch('http://localhost:5000/foods', {
+        fetch('https://food-server-rho.vercel.app/foods', {
             method: 'POST',
             headers: {
                 'content-type':'application/json'
@@ -46,7 +46,7 @@ const AddFood = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             if(data.insertedId){
                 Swal.fire({
                     title: 'Success!',

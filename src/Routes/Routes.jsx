@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/featured-foods"),
+        loader: () => fetch("https://food-server-rho.vercel.app/featured-foods"),
       },
       {
         path: "/register",
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
             <MyFoodRequest></MyFoodRequest>
         </PrivateRoute>,
-       loader: () => fetch("http://localhost:5000/foods"),
+       loader: () => fetch("https://food-server-rho.vercel.app/foods"),
       },
 
       {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       {
         path: "/availableFood",
         element: <AvailableFood></AvailableFood>,
-        loader: () => fetch("http://localhost:5000/foods"),
+        loader: () => fetch("https://food-server-rho.vercel.app/foods"),
       },
       {
         path: "/manageMyFoods",
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
             <ManageMyFood></ManageMyFood>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/foods"),
+        loader: () => fetch("https://food-server-rho.vercel.app/foods", {credentials: 'include'}),
       },
       {
         path: "/details/:id",
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(`https://food-server-rho.vercel.app/foods/${params.id}`),
       },
       {
         path: "/update/:id",
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(`https://food-server-rho.vercel.app/foods/${params.id}`),
       },
     ],
   },

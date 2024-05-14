@@ -2,33 +2,28 @@ import { useLoaderData } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { useState } from "react";
-import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const Details = () => {
   const foods = useLoaderData();
-  console.log(foods);
+  // console.log(foods);
+
 
   const { user } = useAuth() || {};
-  const [startDate, setStartDate] = useState(new Date() || new Date())
-  console.log(startDate)
 
 
 
   const formatDate = (dateString) => {
     if (!dateString) return ""; // Return empty string if dateString is undefined or null
-  
+
     const dateObject = new Date(dateString);
     const year = dateObject.getFullYear();
     const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Adding 1 because getMonth() returns 0-indexed month
     const day = String(dateObject.getDate()).padStart(2, "0");
-  
+
     return `${year}-${month}-${day}`;
   };
-
-
 
   const handleRequest = (event) => {
     event.preventDefault();
@@ -37,13 +32,14 @@ const Details = () => {
     const status = form.status.value;
     const name = form.name.value;
     const email = user.email;
-    const deadline = startDate;
     const location = form.location.value;
     const quantity = parseInt(form.quantity.value);
     const date = form.date.value;
+    const deadline = form.deadline.value;
     const notes = form.notes.value;
     const photoURL = user?.photoURL;
     const displayName = user?.displayName;
+    
 
     const requestFoods = {
       photo,
@@ -58,13 +54,12 @@ const Details = () => {
       displayName,
       email,
       foodId: foods._id,
-      // requesterEmail: user.email
     
     };
-    console.log(requestFoods);
+    // console.log(requestFoods);
 
     //   // send data to the server
-    fetch(`http://localhost:5000/foods-request`, {
+    fetch(`https://food-server-rho.vercel.app/foods-request`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -73,8 +68,8 @@ const Details = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-      
+        // console.log(data);
+
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -82,7 +77,6 @@ const Details = () => {
             icon: "success",
             confirmButtonText: "Cool",
           });
-         
         }
 
         document.getElementById("my_modal_4").close();
@@ -274,7 +268,6 @@ const Details = () => {
                               name="date"
                               className="input input-bordered w-full"
                             />
-                            
                           </label>
                         </div>
                       </div>
@@ -330,7 +323,14 @@ const Details = () => {
                           <label className="label">
                             <span className="label-text">Request Date</span>
                           </label>
-                          <DatePicker className="border p-3 rounded-md" selected={startDate} onChange={(date) => setStartDate(date)} />
+                          <label className="input-group">
+                            <input
+                              type="date"
+                              defaultValue={formatDate(foods.deadline)}
+                              name="deadline"
+                              className="input input-bordered w-full"
+                            />
+                          </label>
                         </div>
                       </div>
 
@@ -339,8 +339,6 @@ const Details = () => {
                         value="Request"
                         className="btn btn-block"
                       />
-
-                    
                     </form>
                   </div>
                 </div>

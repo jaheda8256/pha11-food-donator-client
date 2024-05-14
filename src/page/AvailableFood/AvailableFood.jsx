@@ -6,6 +6,7 @@ import { Typewriter } from "react-simple-typewriter";
 const AvailableFood = () => {
   const loadedFoods = useLoaderData();
   const [foods, setFoods] = useState(loadedFoods);
+  const [sort, setSort] = useState('');
   return (
     <div>
     <div className="flex justify-between mt-4">
@@ -27,18 +28,20 @@ const AvailableFood = () => {
         </label>
       </div>
 
-      <div className="">
-        <details className="dropdown">
-          <summary className="m-1 btn">open or close</summary>
-          <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-          </ul>
-        </details>
+      <div className=" mt-10">
+      <select
+      onChange={e =>{
+        setSort(e.target.value)
+
+      }}
+      value={sort}
+      name="sort"
+      className="border p-3 rounded-md"
+      >
+        <option value=""> Expire Date</option>
+        <option value="dsc">descending</option>
+        <option value="asc">ascending</option>
+      </select>
       </div>
     </div>
 

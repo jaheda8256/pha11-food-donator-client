@@ -9,10 +9,10 @@ const MyFoodRequest = () => {
     const loadedFoods = useLoaderData();
   const { user } = useAuth() || {};
   const [foodCards, setFoodCards] = useState(loadedFoods);
-console.log(foodCards);
+// console.log(foodCards);
   // get my spots
   useEffect(() => {
-    fetch(`http://localhost:5000/request-email/${user?.email}`)
+    fetch(`https://food-server-rho.vercel.app/request-email/${user?.email}`,{credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setFoodCards(data))
       .catch((err) => console.log(err.message));

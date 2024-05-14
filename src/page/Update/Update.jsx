@@ -43,10 +43,10 @@ const Update = () => {
       email,
       photo,
     };
-    console.log(updatedFoods);
+    // console.log(updatedFoods);
 
     //   // send data to the server
-    fetch(`http://localhost:5000/foods/${_id}`, {
+    fetch(`https://food-server-rho.vercel.app/foods/${_id}`, {
       method: "PuT",
       headers: {
         "content-type": "application/json",
@@ -55,7 +55,7 @@ const Update = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",

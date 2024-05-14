@@ -7,17 +7,17 @@ const ManageMyFood = () => {
   const loadedFoods = useLoaderData();
   const { user } = useAuth() || {};
   const [foodCards, setFoodCards] = useState(loadedFoods);
-console.log(foodCards);
+// console.log(foodCards);
   // get my spots
   useEffect(() => {
-    fetch(`http://localhost:5000/foods-email/${user?.email}`)
+    fetch(`https://food-server-rho.vercel.app/foods-email/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setFoodCards(data))
       .catch((err) => console.log(err.message));
   }, [user?.email]);
 
   const handleDelete = (_id) => {
-    console.log(_id);
+    // console.log(_id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -31,12 +31,12 @@ console.log(foodCards);
       if (result.isConfirmed) {
         //
 
-        fetch(`http://localhost:5000/foods/${_id}`, {
+        fetch(`https://food-server-rho.vercel.app/foods/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
