@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AllFFoodCard from "./AllFFoodCard";
 import { Typewriter } from "react-simple-typewriter";
+import { Helmet } from "react-helmet-async";
 // import axios from "axios";
 
 const AvailableFood = () => {
@@ -10,34 +11,44 @@ const AvailableFood = () => {
 
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  
+
+
+useEffect(() =>{
+  fetch(`https://food-server-rho.vercel.app/foods?search=${search}`)
+  .then(res => res.json())
+  .then(data => setFoods(data))
+} ,[search])
+
 
   const handleSearchChange = (e) => {
     e.preventDefault()
    const text = e.target.search.value;
    setSearch(text);
+  console.log(text);
   };
 
-console.log(search)
+
 
 
   return (
     <div>
-      <div className="w-1/3 mt-4">
+      
+      <Helmet>
+                <title>Foods Project | AvailableFood</title>
+            </Helmet>
+   
       <form onSubmit={handleSearchChange}>
-      <div>
-          <label className="input relative input-bordered flex items-center  mt-4 gap-2">
+         
             <input
               type="text"
               name="search"
               onChange={handleSearchChange}
-              className="w-full"
-              placeholder="Search"
+              className=""
             />
-
-            <button className="btn absolute btn-outline border-none btn-success ml-72 ">Success</button>
-        
-          </label>
-        </div>
+  <input type="submit" className="btn" value="Search" />
+            
+    
       </form>
 
 
@@ -56,7 +67,7 @@ console.log(search)
             <option value="asc">ascending</option>
           </select>
         </div>
-      </div>
+    
 
       <h2 className="text-5xl font-lato text-center font-extrabold text-[#089797] my-10">
         {" "}

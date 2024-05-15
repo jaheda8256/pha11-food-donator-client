@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageMyFood = () => {
   const loadedFoods = useLoaderData();
@@ -53,6 +54,10 @@ const ManageMyFood = () => {
 
   return (
     <div className="my-16">
+      
+      <Helmet>
+                <title>Foods Project | ManageMyFood</title>
+            </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

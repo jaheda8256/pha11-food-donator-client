@@ -6,6 +6,7 @@ import HomeCard from "./HomeCard";
 import { Typewriter } from "react-simple-typewriter";
 import ExtraSection from "./ExtraSection";
 import LastPart from "./LastPart";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -17,6 +18,9 @@ const Home = () => {
 
   return (
     <div>
+          <Helmet>
+                <title>Foods Project | Home</title>
+            </Helmet>
       <Carousel></Carousel>
 
       <div className="my-16">

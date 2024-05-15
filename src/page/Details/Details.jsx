@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet-async";
 
 const Details = () => {
   const foods = useLoaderData();
@@ -85,6 +86,10 @@ const Details = () => {
 
   return (
     <div className="flex items-center justify-center my-16">
+      
+      <Helmet>
+                <title>Foods Project: {foods._id}</title>
+            </Helmet>
       <div className="max-w-lg p-8 shadow-xl dark:bg-gray-50 dark:text-gray-800">
         <div className="space-y-4">
           <div className="space-y-2">

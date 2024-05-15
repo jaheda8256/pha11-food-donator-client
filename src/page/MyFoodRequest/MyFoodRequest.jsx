@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 const MyFoodRequest = () => {
@@ -21,6 +22,10 @@ const MyFoodRequest = () => {
 
   return (
     <div>
+      
+      <Helmet>
+                <title>Foods Project | MyFoodRequest</title>
+            </Helmet>
      <table className="table">
           {/* head */}
           <thead>

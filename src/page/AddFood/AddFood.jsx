@@ -1,6 +1,7 @@
 import { Typewriter } from 'react-simple-typewriter';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const AddFood = () => {
 
@@ -61,6 +62,10 @@ const AddFood = () => {
 
     return (
         <div>
+            
+          <Helmet>
+                <title>Foods Project | AddFood</title>
+            </Helmet>
           <div className="bg-[#0664738e] text-[#195e5e] p-16 my-16 mx-2 rounded-md">
     
         <h2 className="text-4xl font-lato text-center font-extrabold mb-6"> <span style={{ color: '', fontWeight: 'bold' }}>

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -39,6 +40,10 @@ const Login = () => {
 
     return (
         <div>
+          
+          <Helmet>
+                <title>Foods Project | Login</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200 my-16 rounded-2xl">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
