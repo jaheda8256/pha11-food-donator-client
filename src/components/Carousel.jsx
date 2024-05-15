@@ -35,7 +35,7 @@ export default function Carousel() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper rounded-2xl"
       >
         <SwiperSlide>
         <Slide image={bgimg1} text='Donation for street children'></Slide>
