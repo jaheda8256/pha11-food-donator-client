@@ -8,8 +8,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import bgimg1 from '../assets/male-volunteer-holding-food.jpg';
 import bgimg2 from '../assets/charity-box-being-prepared.jpg';
-import bgimg3 from '../assets/pasta.jpg';
-import bgimg4 from '../assets/bargar-testy.jpg';
+import bgimg3 from '../assets/close-up-delivery.jpg';
+import bgimg4 from '../assets/women-preparing.jpg';
 
 
 

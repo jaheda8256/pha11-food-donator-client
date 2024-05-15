@@ -12,11 +12,14 @@ const AvailableFood = () => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
 
+
+console.log(search)
+
   // useEffect(() => {
-  //   fetch(`https://food-server-rho.vercel.app/foods`)
+  //   fetch(`http://localhost:5000/foods?search=${search}`)
   //     .then((res) => res.json())
   //     .then((data) => setFoods(data));
-  // }, []);
+  // }, [search]);
 
   const handleSearchChange = (e) => {
     e.preventDefault();

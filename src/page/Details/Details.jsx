@@ -14,7 +14,7 @@ const Details = () => {
   const { user } = useAuth() || {};
 
 
-
+  
   const formatDate = (dateString) => {
     if (!dateString) return ""; // Return empty string if dateString is undefined or null
 
