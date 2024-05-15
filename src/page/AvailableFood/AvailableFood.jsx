@@ -11,63 +11,50 @@ const AvailableFood = () => {
 
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
-  
 
-
-useEffect(() =>{
-  fetch(`https://food-server-rho.vercel.app/foods?search=${search}`)
-  .then(res => res.json())
-  .then(data => setFoods(data))
-} ,[search])
-
+  // useEffect(() => {
+  //   fetch(`https://food-server-rho.vercel.app/foods`)
+  //     .then((res) => res.json())
+  //     .then((data) => setFoods(data));
+  // }, []);
 
   const handleSearchChange = (e) => {
-    e.preventDefault()
-   const text = e.target.search.value;
-   setSearch(text);
-  console.log(text);
+    e.preventDefault();
+    const text = e.target.search.value;
+    setSearch(text);
+    console.log(text);
   };
-
-
-
 
   return (
     <div>
-      
       <Helmet>
-                <title>Foods Project | AvailableFood</title>
-            </Helmet>
-   
+        <title>Foods Project | AvailableFood</title>
+      </Helmet>
+
       <form onSubmit={handleSearchChange}>
-         
-            <input
-              type="text"
-              name="search"
-              onChange={handleSearchChange}
-              className=""
-            />
-  <input type="submit" className="btn" value="Search" />
-            
-    
+        <input
+          type="text"
+          name="search"
+          onChange={handleSearchChange}
+          className=""
+        />
+        <input type="submit" className="btn" value="Search" />
       </form>
 
-
-
-        <div className=" mt-10">
-          <select
-            onChange={(e) => {
-              setSort(e.target.value);
-            }}
-            value={sort}
-            name="sort"
-            className="border p-3 rounded-md"
-          >
-            <option value=""> Expire Date</option>
-            <option value="dsc">descending</option>
-            <option value="asc">ascending</option>
-          </select>
-        </div>
-    
+      <div className=" mt-10">
+        <select
+          onChange={(e) => {
+            setSort(e.target.value);
+          }}
+          value={sort}
+          name="sort"
+          className="border p-3 rounded-md"
+        >
+          <option value=""> Expire Date</option>
+          <option value="dsc">descending</option>
+          <option value="asc">ascending</option>
+        </select>
+      </div>
 
       <h2 className="text-5xl font-lato text-center font-extrabold text-[#089797] my-10">
         {" "}

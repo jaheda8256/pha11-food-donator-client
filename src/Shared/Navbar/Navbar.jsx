@@ -35,15 +35,25 @@ const Navbar = () => {
       <li className="font-semibold">
         <NavLink to="/availableFood"> Available Foods Page</NavLink>
       </li>
-      <li className="font-semibold">
-        <NavLink to="/addFood">Add a Food</NavLink>
-      </li>
-      <li className="font-semibold">
-        <NavLink to="/manageMyFoods"> Manage My Foods</NavLink>
-      </li>
-      <li className="font-semibold">
-        <NavLink to="/myFoodRequest">My Food Request</NavLink>
-      </li>
+      {user && (
+        <li className="font-semibold">
+          <NavLink to="/addFood">Add a Food</NavLink>
+        </li>
+      )}
+
+        {
+          user && ( <li className="font-semibold">
+          <NavLink to="/manageMyFoods"> Manage My Foods</NavLink>
+        </li>)
+        }
+     
+
+     {
+      user && (<li className="font-semibold">
+      <NavLink to="/myFoodRequest">My Food Request</NavLink>
+    </li>)
+     }
+      
     </>
   );
   return (
@@ -114,8 +124,8 @@ const Navbar = () => {
           </div>
         ) : (
           <div className=" gap-4">
-         <Link to="/login">
-          <button className="btn bg-blue-800 text-white">Login</button>
+            <Link to="/login">
+              <button className="btn bg-blue-800 text-white">Login</button>
             </Link>
           </div>
         )}
