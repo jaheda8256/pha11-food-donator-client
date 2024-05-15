@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -14,7 +14,7 @@ const Details = () => {
   const { user } = useAuth() || {};
 
 
-  
+
   const formatDate = (dateString) => {
     if (!dateString) return ""; // Return empty string if dateString is undefined or null
 
@@ -344,6 +344,9 @@ const Details = () => {
                         value="Request"
                         className="btn btn-block"
                       />
+                    <Link to="/availableFood">
+                    <button className="btn w-full mt-2">Close</button>
+                    </Link>
                     </form>
                   </div>
                 </div>

@@ -21,7 +21,7 @@ const MyFoodRequest = () => {
 
 
   return (
-    <div>
+    <div className="my-16">
       
       <Helmet>
                 <title>Foods Project | MyFoodRequest</title>

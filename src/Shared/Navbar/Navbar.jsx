@@ -91,7 +91,7 @@ const Navbar = () => {
               className="w-10 h-10 hidden sm:block mr-2"
             />
           </span>
-          Food
+          Food Donate
         </a>
       </div>
       <div className="navbar-center  hidden sm:block md:flex lg:flex">

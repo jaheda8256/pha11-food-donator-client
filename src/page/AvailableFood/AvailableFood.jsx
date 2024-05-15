@@ -8,18 +8,25 @@ import { Helmet } from "react-helmet-async";
 const AvailableFood = () => {
   const loadedFoods = useLoaderData();
   const [foods, setFoods] = useState(loadedFoods);
+  console.log(foods);
 
-  const [sort, setSort] = useState("");
+  const [asc, setAsc] = useState(false);
   const [search, setSearch] = useState("");
 
+  console.log(asc);
 
-console.log(search)
+  useEffect(() => {
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/foods?search=${search}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setFoods(data));
-  // }, [search]);
+    if (asc || search) {
+      fetch(
+        `https://food-server-rho.vercel.app/foods-sort?sort=${
+          asc ? "asc" : "dsc"
+        }&search=${search}`
+      )
+        .then((res) => res.json())
+        .then((data) => setFoods(data));
+    }
+  }, [asc, search]);
 
   const handleSearchChange = (e) => {
     e.preventDefault();
@@ -35,28 +42,14 @@ console.log(search)
       </Helmet>
 
       <form onSubmit={handleSearchChange}>
-        <input
-          type="text"
-          name="search"
-          onChange={handleSearchChange}
-          className=""
-        />
-        <input type="submit" className="btn" value="Search" />
+        <input type="text" name="search" className="border-2 p-2 mt-6 rounded-lg" />
+        <input type="submit" className="btn btn-secondary" value="Search" />
       </form>
 
       <div className=" mt-10">
-        <select
-          onChange={(e) => {
-            setSort(e.target.value);
-          }}
-          value={sort}
-          name="sort"
-          className="border p-3 rounded-md"
-        >
-          <option value=""> Expire Date</option>
-          <option value="dsc">descending</option>
-          <option value="asc">ascending</option>
-        </select>
+        <button onClick={() => setAsc(!asc)} className="btn btn-secondary">
+          {asc ? "Expire Date: High to Low" : "Expire Date: Low to High"}
+        </button>
       </div>
 
       <h2 className="text-5xl font-lato text-center font-extrabold text-[#089797] my-10">
