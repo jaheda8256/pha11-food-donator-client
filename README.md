@@ -8,7 +8,7 @@
 
 ## Project Description
 
-We are developing a Community Food Sharing and Surplus Reduction Platform where users can share surplus food items with others in need. This platform is built using React, Firebase, Node.js, and MongoDB.
+- We are developing a Community Food Sharing and Surplus Reduction Platform where users can share surplus food items with others in need. This platform is built using React, Firebase, Node.js, and MongoDB.
 
 ## Features
 
@@ -25,5 +25,5 @@ We are developing a Community Food Sharing and Surplus Reduction Platform where 
 
 - Install dependencies.(npm install)
 - Set up MongoDB and Firebase credentials in environment variables.
-- Clone the server repository(https://github.com/jahedasultana/ pha11-food-donator-server)
+- Clone the server repository(https://github.com/jahedasultana/pha11-food-donator-server.git)
 - Install server dependencies and start the server.
