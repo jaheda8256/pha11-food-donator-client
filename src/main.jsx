@@ -8,7 +8,7 @@ import {
 import router from './Routes/Routes.jsx';
 import FirebaseProvider from './FirebaseProvider/FirebaseProvider.jsx';
 
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { HelmetProvider } from 'react-helmet-async';
 

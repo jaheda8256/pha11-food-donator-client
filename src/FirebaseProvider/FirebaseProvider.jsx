@@ -10,7 +10,6 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import axios from "axios";
-
 export const AuthContext = createContext(null);
 // social auth provider
 const googleProvider = new GoogleAuthProvider();

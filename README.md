@@ -1,21 +1,29 @@
-# Food-Client-Project
+# Food-donator-client
 
-live link: https://food-projects-9d8e7.web.app
+- live link: https://food-projects-9d8e7.web.app
+- github-client-link: https://github.com/jahedasultana/pha11-food-donator-client
+- github-server-link: https://github.com/jahedasultana/pha11-food-donator-server
 
+# Community Food Sharing and Surplus Reduction Platform
 
-Responsibilities
-As a Full Stack Developer on our team, your responsibilities include:
+## Project Description
 
-Design: Creating intuitive and visually appealing user interfaces for both desktop and mobile platforms.
-Development: Implementing frontend and backend functionality using cutting-edge technologies such as React, Node.js, and MongoDB.
-Maintenance: Ensuring the platform is stable, secure, and up-to-date with the latest features and enhancements.
-Testing: Conducting thorough testing to identify and fix any bugs or issues, ensuring a seamless user experience.
-Optimization: Optimizing performance and scalability to accommodate growing user demand and data volume.
-Live Demo
-You can access the client-side of our platform here.
+We are developing a Community Food Sharing and Surplus Reduction Platform where users can share surplus food items with others in need. This platform is built using React, Firebase, Node.js, and MongoDB.
 
-Enhanced Functionality
-To enhance functionality, we have implemented the following packages:
+## Features
 
-react-elastic-carousel: Enables smooth and responsive carousels for showcasing surplus food items, making browsing more engaging and user-friendly.
-Framer Motion: Adds fluid animations and transitions to the user interface, enhancing the overall visual appeal and user experience.
+- _Authentication_: User registration and login using email/password or social media accounts (Google/Github).
+- _Responsive Design_: Fully responsive layout for mobile, tablet, and desktop views.
+- _Navbar and Footer_: Consistent navbar and informative footer across all pages.
+- _Protected Routes_: Private routes accessible only to authenticated users.
+- _CRUD Operations_: Create, Read, Update, and Delete operations for managing food items.
+- _Search and Sorting_: Search functionality by food name and sorting by expire date.
+- _Toast Notifications_: Toast notifications for user actions (CRUD operations).
+- _JWT Authentication_: Secure private routes using JWT tokens.
+
+## Clone this repository.
+
+- Install dependencies.(npm install)
+- Set up MongoDB and Firebase credentials in environment variables.
+- Clone the server repository(https://github.com/jahedasultana/ pha11-food-donator-server)
+- Install server dependencies and start the server.
